@@ -763,11 +763,17 @@ style="
     setInterval(createHeart, 700);
 
     function showAnswer() {
-      document.getElementById('answer').style.display = 'block';
-      for (let i = 0; i < 24; i++) setTimeout(createHeart, i * 80);
-    }
-    function showNo() {
+  document.getElementById('answer').style.display = 'block';
+  document.getElementById('noAnswer').style.display = 'none';
+
+  for (let i = 0; i < 24; i++) {
+    setTimeout(createHeart, i * 80);
+  }
+}
+
+function showNo() {
   document.getElementById('noAnswer').style.display = 'block';
+  document.getElementById('answer').style.display = 'none';
 
   for (let i = 0; i < 10; i++) {
     setTimeout(createHeart, i * 120);
