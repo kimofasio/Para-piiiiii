@@ -56,12 +56,13 @@
     }
 
     .heart {
-      position: absolute;
-      bottom: -40px;
-      color: rgba(201, 79, 124, .28);
-      animation: rise linear forwards;
-      font-size: 18px;
-    }
+  position: absolute;
+  bottom: -120px;
+  pointer-events: none;
+  opacity: .9;
+  animation: rise linear forwards;
+  filter: drop-shadow(0 10px 18px rgba(255, 170, 200, .35));
+}
 
     @keyframes rise {
       to {
