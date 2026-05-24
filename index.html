@@ -695,8 +695,38 @@
         <p>Quiero intentar algo bonito contigo, con calma, con respeto, con cariño y con muchas ganas de hacerte feliz.</p>
         <h2>¿Quieres ser mi pareja?</h2>
         <button onclick="showAnswer()">Sí ♡</button>
-        <div id="answer">No sabes lo feliz que me hace esto. Gracias por decir que sí ♡</div>
-      </div>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:20px;">
+
+  <button onclick="showAnswer()">
+    Sí ♡
+  </button>
+
+  <button onclick="showNo()" 
+  style="
+    background: #ffffff;
+    color: #c94f7c;
+    border: 2px solid #f3a4c3;
+    box-shadow: none;
+  ">
+    No
+  </button>
+
+</div>
+
+<div id="answer">
+  NO SABES LO FELIZ QUE ME HACE ESTO
+</div>
+
+<div id="noAnswer" 
+style="
+  display:none;
+  margin-top:20px;
+  color:#c94f7c;
+  font-weight:900;
+  font-size:1.3rem;
+">
+  QUE TE PASAAA TwT
+</div>
     </section>
   </main>
 
@@ -737,6 +767,13 @@
       document.getElementById('answer').style.display = 'block';
       for (let i = 0; i < 24; i++) setTimeout(createHeart, i * 80);
     }
+    function showNo() {
+  document.getElementById('noAnswer').style.display = 'block';
+
+  for (let i = 0; i < 10; i++) {
+    setTimeout(createHeart, i * 120);
+  }
+}
   </script>
 </body>
 </html>
