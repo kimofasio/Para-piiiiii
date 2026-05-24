@@ -707,15 +707,28 @@
     const hearts = document.getElementById('hearts');
 
     function createHeart() {
-      const heart = document.createElement('span');
-      heart.className = 'heart';
-      heart.textContent = ['♡', '♥', '✧'][Math.floor(Math.random() * 3)];
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 6 + Math.random() * 5 + 's';
-      heart.style.fontSize = 14 + Math.random() * 18 + 'px';
-      hearts.appendChild(heart);
-      setTimeout(() => heart.remove(), 11000);
-    }
+  const heart = document.createElement('img');
+
+  heart.src = 'fotos/pibble.png';
+
+  heart.className = 'heart';
+
+  heart.style.left = Math.random() * 100 + 'vw';
+
+  const size = 35 + Math.random() * 45;
+
+  heart.style.width = size + 'px';
+
+  heart.style.height = 'auto';
+
+  heart.style.animationDuration = 8 + Math.random() * 6 + 's';
+
+  hearts.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 14000);
+}
 
     setInterval(createHeart, 700);
 
