@@ -3,19 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Para mi amor 💗</title>
+  <title>Para ti, mi amor 💗</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
     }
 
     body {
-      min-height: 100vh;
-      background: linear-gradient(135deg, #ffd1dc, #ffe6f2, #ffc0cb);
-      color: #5c2540;
+      background:
+        radial-gradient(circle at top left, rgba(255, 150, 190, 0.35), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(255, 210, 230, 0.55), transparent 35%),
+        linear-gradient(135deg, #fff7fb, #ffe3ef, #ffd1e4);
+      color: #5b2540;
       overflow-x: hidden;
     }
 
@@ -29,239 +32,450 @@
 
     .heart {
       position: absolute;
-      color: rgba(255, 80, 140, 0.45);
-      animation: floatUp 8s linear infinite;
+      color: rgba(255, 70, 140, 0.45);
+      animation: floatUp 9s linear infinite;
       font-size: 22px;
     }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(110vh) scale(0.8) rotate(0deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(110vh) scale(0.8) rotate(0deg); opacity: 0; }
       15% { opacity: 1; }
-      100% {
-        transform: translateY(-15vh) scale(1.5) rotate(360deg);
-        opacity: 0;
-      }
+      100% { transform: translateY(-15vh) scale(1.6) rotate(360deg); opacity: 0; }
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 12px white;
+      animation: twinkle 3s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.25; transform: scale(0.7); }
+      to { opacity: 1; transform: scale(1.3); }
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 14px 18px;
+      background: rgba(255, 245, 250, 0.82);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 125, 175, 0.35);
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #c92f75;
+      font-weight: 700;
+      background: white;
+      border: 1px solid #ffc2dc;
+      padding: 8px 14px;
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(255, 100, 160, 0.15);
+      transition: 0.25s;
+      font-size: 0.92rem;
+    }
+
+    nav a:hover {
+      transform: translateY(-2px);
+      background: #ffe8f2;
     }
 
     header {
       position: relative;
       z-index: 1;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: grid;
+      place-items: center;
+      padding: 60px 20px;
       text-align: center;
-      padding: 40px 20px;
     }
 
     .hero-card {
-      max-width: 900px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 3px solid #ff9fbd;
-      border-radius: 40px;
-      padding: 45px 30px;
-      box-shadow: 0 20px 60px rgba(255, 93, 143, 0.35);
-      backdrop-filter: blur(8px);
+      max-width: 980px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 4px solid #ff9fc8;
+      border-radius: 48px;
+      padding: 58px 34px;
+      box-shadow: 0 25px 80px rgba(255, 90, 150, 0.32);
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
     }
 
-    h1 {
-      font-size: clamp(2.4rem, 7vw, 5rem);
-      color: #e84d8a;
-      text-shadow: 2px 2px 0 #fff;
+    .hero-card::before,
+    .hero-card::after {
+      content: '♡';
+      position: absolute;
+      color: rgba(255, 120, 170, 0.18);
+      font-size: 12rem;
+      font-weight: bold;
+    }
+
+    .hero-card::before { left: -35px; top: -55px; }
+    .hero-card::after { right: -25px; bottom: -75px; }
+
+    .small-label {
+      display: inline-block;
+      background: #fff0f7;
+      color: #d63378;
+      border: 1px solid #ffaad0;
+      padding: 8px 18px;
+      border-radius: 999px;
+      font-weight: 800;
       margin-bottom: 18px;
     }
 
+    h1 {
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      color: #e84d8a;
+      text-shadow: 3px 3px 0 #fff;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
     .subtitle {
-      font-size: clamp(1.1rem, 3vw, 1.6rem);
-      line-height: 1.7;
-      margin-bottom: 28px;
+      font-size: clamp(1.1rem, 2.8vw, 1.55rem);
+      line-height: 1.8;
+      max-width: 780px;
+      margin: auto auto 30px;
+      position: relative;
+      z-index: 2;
     }
 
     .main-button {
       display: inline-block;
-      background: linear-gradient(135deg, #ff6fae, #ff9ec7);
+      background: linear-gradient(135deg, #ff63a7, #ff9ecb);
       color: white;
       text-decoration: none;
-      padding: 16px 34px;
+      padding: 17px 36px;
       border-radius: 999px;
-      font-weight: bold;
+      font-weight: 900;
       font-size: 1.1rem;
-      box-shadow: 0 10px 25px rgba(255, 80, 140, 0.4);
+      box-shadow: 0 14px 30px rgba(255, 80, 140, 0.4);
       transition: 0.3s ease;
+      position: relative;
+      z-index: 2;
     }
 
     .main-button:hover {
       transform: scale(1.06);
-      box-shadow: 0 15px 35px rgba(255, 80, 140, 0.55);
     }
 
     section {
       position: relative;
       z-index: 1;
-      padding: 70px 22px;
-      max-width: 1150px;
+      max-width: 1180px;
       margin: auto;
+      padding: 80px 22px;
     }
 
     .section-title {
       text-align: center;
-      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-size: clamp(2.1rem, 5vw, 3.8rem);
       color: #d63376;
-      margin-bottom: 35px;
+      margin-bottom: 18px;
+      text-shadow: 2px 2px 0 white;
     }
 
-    .message-box {
-      background: rgba(255, 255, 255, 0.78);
-      border: 3px dashed #ff8fbd;
-      border-radius: 35px;
-      padding: 35px;
-      box-shadow: 0 15px 40px rgba(255, 120, 170, 0.25);
-      font-size: 1.18rem;
+    .section-subtitle {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 42px;
+      line-height: 1.8;
+      font-size: 1.12rem;
+      color: #7a3452;
+    }
+
+    .story-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+      margin: 45px 0;
+      background: rgba(255, 255, 255, 0.72);
+      border: 2px solid rgba(255, 160, 200, 0.65);
+      border-radius: 38px;
+      padding: 24px;
+      box-shadow: 0 18px 45px rgba(255, 120, 170, 0.22);
+    }
+
+    .story-block.reverse .story-image { order: 2; }
+    .story-block.reverse .story-text { order: 1; }
+
+    .story-image {
+      position: relative;
+      background: white;
+      border: 6px solid #ffabd1;
+      border-radius: 32px;
+      padding: 12px;
+      box-shadow: 0 14px 35px rgba(255, 100, 160, 0.28);
+      transform: rotate(-1.2deg);
+    }
+
+    .story-block.reverse .story-image {
+      transform: rotate(1.2deg);
+    }
+
+    .story-image::before {
+      content: '♡';
+      position: absolute;
+      top: -23px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #ff5fa2;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 28px;
+      box-shadow: 0 8px 18px rgba(255, 80, 140, 0.35);
+    }
+
+    .story-image img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 24px;
+      display: block;
+      background: #ffe8f2;
+    }
+
+    .story-text {
+      padding: 18px;
+    }
+
+    .story-text h3 {
+      font-size: clamp(1.7rem, 3vw, 2.35rem);
+      color: #d63376;
+      margin-bottom: 16px;
+    }
+
+    .story-text p {
+      font-size: 1.08rem;
       line-height: 1.9;
+      margin-bottom: 14px;
+    }
+
+    .quote-box {
+      margin-top: 18px;
+      background: #fff0f7;
+      border-left: 6px solid #ff6fae;
+      padding: 18px;
+      border-radius: 18px;
+      font-weight: 700;
+      color: #9d2e60;
+    }
+
+    .letter {
+      background: rgba(255, 255, 255, 0.82);
+      border: 3px dashed #ff8fbd;
+      border-radius: 36px;
+      padding: 42px;
+      box-shadow: 0 18px 45px rgba(255, 120, 170, 0.25);
+      line-height: 2;
+      font-size: 1.14rem;
       text-align: center;
     }
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 28px;
-      margin-top: 25px;
+      margin-top: 34px;
     }
 
     .photo-card {
-      background: #fff;
-      border: 5px solid #ff9ec7;
+      background: white;
+      border: 5px solid #ffaed1;
       border-radius: 30px;
       padding: 12px;
-      box-shadow: 0 12px 30px rgba(255, 100, 160, 0.3);
-      transform: rotate(-1deg);
-      transition: 0.3s ease;
+      box-shadow: 0 14px 35px rgba(255, 100, 160, 0.28);
+      transition: 0.3s;
       position: relative;
     }
 
-    .photo-card:nth-child(even) {
-      transform: rotate(1deg);
-    }
-
-    .photo-card:hover {
-      transform: scale(1.04) rotate(0deg);
-    }
-
-    .photo-card::before {
-      content: '♡';
-      position: absolute;
-      top: -22px;
-      right: 20px;
-      background: #ff6fae;
-      color: white;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      box-shadow: 0 5px 15px rgba(255, 80, 140, 0.4);
-    }
+    .photo-card:nth-child(odd) { transform: rotate(-1deg); }
+    .photo-card:nth-child(even) { transform: rotate(1deg); }
+    .photo-card:hover { transform: scale(1.04) rotate(0deg); }
 
     .photo-card img {
       width: 100%;
-      height: 260px;
+      height: 280px;
       object-fit: cover;
       border-radius: 22px;
       display: block;
+      background: #ffe8f2;
     }
 
     .photo-card p {
-      text-align: center;
       margin-top: 12px;
-      font-weight: bold;
+      text-align: center;
       color: #b8326d;
+      font-weight: 800;
     }
 
-    .timeline {
+    .bts-collage {
       display: grid;
+      grid-template-columns: 1.2fr 0.8fr 1fr;
+      grid-template-rows: 220px 220px;
+      gap: 18px;
+      margin-top: 34px;
+    }
+
+    .bts-item {
+      border-radius: 30px;
+      overflow: hidden;
+      border: 5px solid white;
+      box-shadow: 0 14px 35px rgba(255, 100, 160, 0.26);
+      position: relative;
+      background: #ffe8f2;
+    }
+
+    .bts-item.big {
+      grid-row: span 2;
+    }
+
+    .bts-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .bts-item span {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #c92f75;
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 22px;
-      margin-top: 30px;
+      margin-top: 34px;
     }
 
-    .moment {
-      background: rgba(255, 255, 255, 0.8);
-      border-left: 8px solid #ff6fae;
-      border-radius: 25px;
-      padding: 24px;
-      box-shadow: 0 10px 25px rgba(255, 120, 170, 0.22);
+    .reason-card {
+      background: rgba(255, 255, 255, 0.82);
+      border: 2px solid #ffc1dc;
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: 0 14px 34px rgba(255, 110, 160, 0.18);
+      transition: 0.25s;
     }
 
-    .moment h3 {
+    .reason-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .reason-card h3 {
       color: #d63376;
-      margin-bottom: 10px;
-      font-size: 1.45rem;
+      margin-bottom: 12px;
+      font-size: 1.35rem;
+    }
+
+    .reason-card p {
+      line-height: 1.75;
     }
 
     .music-card {
       text-align: center;
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.86);
       border: 3px solid #ff9ec7;
-      border-radius: 35px;
-      padding: 35px 25px;
-      box-shadow: 0 15px 40px rgba(255, 120, 170, 0.28);
+      border-radius: 38px;
+      padding: 40px 25px;
+      box-shadow: 0 18px 45px rgba(255, 120, 170, 0.28);
+    }
+
+    .music-card h3 {
+      font-size: 2rem;
+      color: #d63376;
+      margin-bottom: 12px;
     }
 
     audio {
-      width: min(100%, 520px);
-      margin-top: 22px;
+      width: min(100%, 560px);
+      margin-top: 24px;
     }
 
-    .proposal {
+    .final-proposal {
       text-align: center;
-      background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(255,230,242,0.9));
+      background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(255,230,242,0.95));
       border: 4px solid #ff6fae;
-      border-radius: 45px;
-      padding: 50px 25px;
-      box-shadow: 0 20px 60px rgba(255, 80, 140, 0.35);
+      border-radius: 48px;
+      padding: 58px 28px;
+      box-shadow: 0 25px 80px rgba(255, 80, 140, 0.32);
+      position: relative;
+      overflow: hidden;
     }
 
-    .proposal h2 {
-      font-size: clamp(2.2rem, 6vw, 4rem);
+    .final-proposal::before {
+      content: '💗';
+      position: absolute;
+      font-size: 12rem;
+      opacity: 0.1;
+      top: -35px;
+      left: -20px;
+    }
+
+    .final-proposal h2 {
+      font-size: clamp(2.3rem, 6vw, 4.2rem);
       color: #e84d8a;
-      margin-bottom: 25px;
+      margin-bottom: 22px;
+      position: relative;
     }
 
-    .proposal p {
-      font-size: 1.25rem;
-      line-height: 1.9;
-      max-width: 800px;
-      margin: auto auto 30px;
+    .final-proposal p {
+      font-size: 1.18rem;
+      line-height: 1.95;
+      max-width: 840px;
+      margin: 0 auto 22px;
+      position: relative;
     }
 
     .yes-button {
+      margin-top: 18px;
       border: none;
-      background: #ff5fa2;
+      background: linear-gradient(135deg, #ff5fa2, #ff93c3);
       color: white;
-      padding: 18px 42px;
+      padding: 18px 44px;
       border-radius: 999px;
       font-size: 1.25rem;
-      font-weight: bold;
+      font-weight: 900;
       cursor: pointer;
-      box-shadow: 0 12px 28px rgba(255, 80, 140, 0.4);
-      transition: 0.25s ease;
+      box-shadow: 0 14px 30px rgba(255, 80, 140, 0.4);
+      transition: 0.25s;
     }
 
     .yes-button:hover {
       transform: scale(1.08);
-      background: #e84d8a;
     }
 
     #answer {
-      margin-top: 25px;
-      font-size: 1.5rem;
-      color: #d63376;
-      font-weight: bold;
       display: none;
+      margin-top: 24px;
+      font-size: 1.55rem;
+      color: #d63376;
+      font-weight: 900;
     }
 
     footer {
@@ -270,18 +484,37 @@
       text-align: center;
       padding: 35px 20px 55px;
       color: #9b2c5d;
-      font-weight: bold;
+      font-weight: 900;
     }
 
-    @media (max-width: 600px) {
-      .hero-card,
-      .message-box,
-      .proposal {
-        padding: 28px 20px;
+    @media (max-width: 850px) {
+      .story-block,
+      .story-block.reverse {
+        grid-template-columns: 1fr;
       }
 
-      .photo-card img {
-        height: 220px;
+      .story-block.reverse .story-image,
+      .story-block.reverse .story-text {
+        order: initial;
+      }
+
+      .story-image img {
+        height: 320px;
+      }
+
+      .bts-collage {
+        grid-template-columns: 1fr;
+        grid-template-rows: none;
+      }
+
+      .bts-item,
+      .bts-item.big {
+        height: 260px;
+        grid-row: auto;
+      }
+
+      .letter {
+        padding: 28px 20px;
       }
     }
   </style>
@@ -289,114 +522,249 @@
 <body>
   <div class="hearts" id="hearts"></div>
 
-  <header>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#historia">Historia</a>
+    <a href="#carta">Carta</a>
+    <a href="#fotos">Fotos</a>
+    <a href="#bts">BTS</a>
+    <a href="#razones">Razones</a>
+    <a href="#declaracion">Pregunta</a>
+  </nav>
+
+  <header id="inicio">
     <div class="hero-card">
+      <span class="small-label">Una página hecha solo para ti ♡</span>
       <h1>Para ti, mi amor 💗</h1>
       <p class="subtitle">
-        Hice esta pequeña página para decirte algo que llevo guardando en mi corazón.
-        Cada momento contigo, incluso en VRChat, se siente real, bonito y especial.
+        Hice este pequeño rincón de internet para guardar algo que siento por ti.
+        Quería que no fuera un simple mensaje, sino un lugar bonito, largo, rosita,
+        lleno de detalles, recuerdos, fotos y palabras que salieran de mi corazón.
       </p>
-      <a href="#declaracion" class="main-button">Abrir mi corazón ♡</a>
+      <a href="#historia" class="main-button">Empezar nuestro recorrido 🌸</a>
     </div>
   </header>
 
-  <section>
-    <h2 class="section-title">Nuestra historia 🌸</h2>
-    <div class="message-box">
+  <section id="historia">
+    <h2 class="section-title">Nuestra historia bonita 🌷</h2>
+    <p class="section-subtitle">
+      Esta página está hecha para contar, poquito a poquito, lo que significas para mí.
+      Puedes cambiar las fotos por las de ustedes y ajustar los textos para que suene más como tú.
+    </p>
+
+    <div class="story-block">
+      <div class="story-image">
+        <img src="fotos/foto1.jpg" alt="Primera foto especial" />
+      </div>
+      <div class="story-text">
+        <h3>Cuando empezaste a volverte especial</h3>
+        <p>
+          No sé exactamente en qué momento pasó, pero un día empecé a notar que hablar contigo
+          se sentía diferente. Tu presencia comenzó a quedarse en mi mente, tus mensajes empezaron
+          a alegrarme el día y tus detalles se volvieron cositas que yo guardaba con mucho cariño.
+        </p>
+        <p>
+          Me gusta pensar que algunas personas llegan sin hacer ruido, pero terminan cambiando
+          la forma en la que se sienten los días. Tú llegaste así: poquito a poquito, pero de una forma muy linda.
+        </p>
+        <div class="quote-box">“Contigo, hasta los momentos simples se sienten especiales.”</div>
+      </div>
+    </div>
+
+    <div class="story-block reverse">
+      <div class="story-image">
+        <img src="fotos/foto2.jpg" alt="Foto de VRChat" />
+      </div>
+      <div class="story-text">
+        <h3>Nuestro mundo, incluso si es virtual</h3>
+        <p>
+          Me encanta que, aunque muchas veces estemos dentro de VRChat o lejos físicamente,
+          aun así logras hacerme sentir cerca de ti. Hay momentos que quizá para otras personas
+          serían simples, pero para mí se vuelven recuerdos que me gusta repetir en mi cabeza.
+        </p>
+        <p>
+          Estar contigo se siente como tener un lugar seguro. Como si, entre tantos mundos,
+          el mejor fuera ese donde estás tú conmigo.
+        </p>
+        <div class="quote-box">“No importa el mapa, el lugar o la distancia: si estás tú, se siente como hogar.”</div>
+      </div>
+    </div>
+
+    <div class="story-block">
+      <div class="story-image">
+        <img src="fotos/foto3.jpg" alt="Recuerdo especial" />
+      </div>
+      <div class="story-text">
+        <h3>Lo que provocas en mí</h3>
+        <p>
+          Me haces sonreír de una forma muy bonita. Me haces querer ser mejor, cuidar más mis palabras,
+          poner más atención a los detalles y demostrarte que para mí no eres alguien cualquiera.
+        </p>
+        <p>
+          Me gusta tu forma de ser, tu manera de existir, tu voz, tus gustos, tus bromas,
+          tus silencios y esas pequeñas cosas tuyas que quizá tú no notas, pero que para mí valen muchísimo.
+        </p>
+        <div class="quote-box">“Me gustas en lo grande, pero también en todos tus detallitos.”</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="carta">
+    <h2 class="section-title">Una carta para ti 💌</h2>
+    <div class="letter">
       <p>
-        Desde que llegaste a mi vida, muchas cosas empezaron a sentirse diferentes.
-        No importa si estamos hablando, jugando, riéndonos, pasando tiempo en VRChat
-        o simplemente existiendo juntos en silencio; contigo todo se siente más bonito.
+        Mi amor, hice esto porque quería regalarte algo diferente. Algo que pudieras abrir y sentir que
+        cada parte fue pensada para ti. Tal vez no sea perfecto, pero está hecho con muchísimo cariño,
+        con nervios, con ilusión y con ganas de hacerte sonreír.
       </p>
       <br />
       <p>
-        Me gusta tu forma de ser, tu voz, tus detalles, tu manera de hacerme sentir querido
-        y esa paz tan linda que me das. Esta página es solo una pequeña parte de todo lo que siento por ti.
+        Gracias por llegar a mi vida de una forma tan bonita. Gracias por cada momento, por cada risa,
+        por cada conversación y por cada instante en el que me haces sentir que estar contigo vale mucho.
+        No quiero que esto sea solo una página; quiero que sea un recuerdo de este momento.
+      </p>
+      <br />
+      <p>
+        Me gustas muchísimo. Me importas muchísimo. Y quería encontrar una forma especial de decírtelo,
+        porque tú mereces algo especial. Mereces detalles, cariño, paciencia, respeto y alguien que te mire
+        como yo te miro: con ternura, emoción y muchas ganas de cuidarte.
       </p>
     </div>
   </section>
 
-  <section>
-    <h2 class="section-title">Fotos que me recuerdan a nosotros 📸</h2>
+  <section id="fotos">
+    <h2 class="section-title">Nuestros recuerditos 📸</h2>
+    <p class="section-subtitle">
+      Aquí puedes poner capturas de VRChat, fotos de ustedes, momentos importantes o imágenes anime que representen su relación.
+    </p>
     <div class="gallery">
       <div class="photo-card">
-        <img src="fotos/foto1.jpg" alt="Nuestra foto 1" />
-        <p>Nuestro primer recuerdo bonito</p>
+        <img src="fotos/recuerdo1.jpg" alt="Recuerdo 1" />
+        <p>Un recuerdo que me hace sonreír</p>
       </div>
       <div class="photo-card">
-        <img src="fotos/foto2.jpg" alt="Nuestra foto 2" />
-        <p>Un momento que guardo en mi corazón</p>
+        <img src="fotos/recuerdo2.jpg" alt="Recuerdo 2" />
+        <p>Un momento muy nuestro</p>
       </div>
       <div class="photo-card">
-        <img src="fotos/foto3.jpg" alt="Nuestra foto 3" />
-        <p>Nosotros en nuestro pequeño mundo</p>
+        <img src="fotos/recuerdo3.jpg" alt="Recuerdo 3" />
+        <p>Mi lugar favorito es contigo</p>
       </div>
       <div class="photo-card">
-        <img src="fotos/anime1.jpg" alt="Foto anime" />
-        <p>Como una historia de anime, pero nuestra</p>
+        <img src="fotos/recuerdo4.jpg" alt="Recuerdo 4" />
+        <p>Como una escena de anime</p>
+      </div>
+      <div class="photo-card">
+        <img src="fotos/recuerdo5.jpg" alt="Recuerdo 5" />
+        <p>Gracias por existir conmigo</p>
+      </div>
+      <div class="photo-card">
+        <img src="fotos/recuerdo6.jpg" alt="Recuerdo 6" />
+        <p>Este recuerdo se queda aquí</p>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2 class="section-title">Cosas que amo de ti 💞</h2>
-    <div class="timeline">
-      <div class="moment">
-        <h3>♡ Tu forma de hacerme sentir</h3>
-        <p>Contigo me siento escuchado, cuidado y acompañado de una manera que no cualquiera logra.</p>
+  <section id="bts">
+    <h2 class="section-title">Un rinconcito de BTS para ti 🎶</h2>
+    <p class="section-subtitle">
+      Como sé que te gusta BTS, también quise poner una parte especial para ti, con un collage rosita y bonito.
+      Aquí puedes poner imágenes de BTS, un collage hecho por ti o fotos que combinen con esa estética.
+    </p>
+
+    <div class="bts-collage">
+      <div class="bts-item big">
+        <img src="fotos/bts1.jpg" alt="BTS collage 1" />
+        <span>Para ti ♡</span>
       </div>
-      <div class="moment">
-        <h3>♡ Tu presencia</h3>
-        <p>Aunque estemos lejos o dentro de un mundo virtual, tu compañía se siente cerquita de mi corazón.</p>
+      <div class="bts-item">
+        <img src="fotos/bts2.jpg" alt="BTS collage 2" />
+        <span>Tu canción</span>
       </div>
-      <div class="moment">
+      <div class="bts-item">
+        <img src="fotos/bts3.jpg" alt="BTS collage 3" />
+        <span>Tu gusto</span>
+      </div>
+      <div class="bts-item">
+        <img src="fotos/bts4.jpg" alt="BTS collage 4" />
+        <span>Tu sonrisa</span>
+      </div>
+      <div class="bts-item">
+        <img src="fotos/bts5.jpg" alt="BTS collage 5" />
+        <span>Mi detalle</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="razones">
+    <h2 class="section-title">Razones por las que me gustas 💞</h2>
+    <div class="reasons">
+      <div class="reason-card">
+        <h3>♡ Tu forma de ser</h3>
+        <p>Porque hay algo en ti que se siente único, tierno y muy bonito para mí.</p>
+      </div>
+      <div class="reason-card">
+        <h3>♡ Tu compañía</h3>
+        <p>Porque cuando estoy contigo, incluso un día normal puede sentirse especial.</p>
+      </div>
+      <div class="reason-card">
+        <h3>♡ Tu voz</h3>
+        <p>Porque escucharla puede cambiarme el ánimo y hacer que quiera quedarme un ratito más.</p>
+      </div>
+      <div class="reason-card">
         <h3>♡ Tus detalles</h3>
-        <p>Me encantan esas pequeñas cosas tuyas que quizá para ti son normales, pero para mí significan demasiado.</p>
+        <p>Porque me fijo en esas cositas pequeñas que haces y que significan mucho para mí.</p>
       </div>
-      <div class="moment">
-        <h3>♡ Lo que eres conmigo</h3>
-        <p>Gracias por ser tú, por quedarte, por hacerme sonreír y por hacer que mis días tengan algo especial.</p>
+      <div class="reason-card">
+        <h3>♡ Lo que siento contigo</h3>
+        <p>Porque me haces sentir querido, emocionado, nervioso y feliz al mismo tiempo.</p>
+      </div>
+      <div class="reason-card">
+        <h3>♡ Porque eres tú</h3>
+        <p>Y esa es la razón más importante. Me gustas por ser exactamente quien eres.</p>
       </div>
     </div>
   </section>
 
-  <section>
-    <h2 class="section-title">Una canción para este momento 🎶</h2>
+  <section id="musica">
+    <h2 class="section-title">Nuestra canción para este momento 🎧</h2>
     <div class="music-card">
-      <h3>Canción especial de BTS</h3>
+      <h3>Una canción especial de BTS</h3>
       <p>
-        Aquí puedes poner la canción que le gusta. Guarda el audio en una carpeta llamada
-        <strong>musica</strong> y cambia el nombre del archivo por el correcto.
+        Dale play cuando llegues a esta parte. Quise que también hubiera música porque algunas canciones
+        hacen que los momentos se queden guardados para siempre.
       </p>
       <audio controls>
         <source src="musica/cancion-bts.mp3" type="audio/mpeg" />
         Tu navegador no puede reproducir el audio.
       </audio>
-      <p style="margin-top: 18px; font-size: 0.95rem;">
-        También puedes cambiar esta parte por un enlace a YouTube o Spotify si prefieres.
-      </p>
     </div>
   </section>
 
   <section id="declaracion">
-    <div class="proposal">
-      <h2>Quiero preguntarte algo... 💍</h2>
+    <div class="final-proposal">
+      <h2>Ahora sí... quiero preguntarte algo 💗</h2>
       <p>
-        No hice esta página solo porque sí. La hice porque quería que este momento fuera especial,
-        porque tú eres especial para mí. Me gustas demasiado, me importas muchísimo y cada día me dan más ganas
-        de cuidarte, hacerte sonreír y construir algo bonito contigo.
+        Después de todo esto, quiero decirte que no hice esta página solo para que se viera bonita.
+        La hice porque quería que este momento tuviera algo de mí: mi tiempo, mi esfuerzo, mis nervios,
+        mi cariño y todas esas ganas que tengo de hacerte sentir especial.
       </p>
       <p>
-        Así que, con todo mi corazón, quiero preguntarte...
+        Me gustas. Me gustas de una forma muy bonita. Me gustas cuando hablamos, cuando jugamos,
+        cuando compartimos tiempo, cuando me haces reír y hasta cuando simplemente estás ahí.
       </p>
-      <h2>¿Quieres ser mi pareja? 💗</h2>
-      <button class="yes-button" onclick="showAnswer()">Sí 💕</button>
-      <div id="answer">Sabía que dirías que sí 😭💗 Te adoro muchísimo.</div>
+      <p>
+        Quiero cuidarte, respetarte, escucharte, hacerte sentir querida y construir algo lindo contigo,
+        paso a paso, sin prisas, pero con mucho amor y sinceridad.
+      </p>
+      <h2>¿Quieres ser mi pareja? 💕</h2>
+      <button class="yes-button" onclick="showAnswer()">Sí, quiero 💗</button>
+      <div id="answer">Sabía que este momento sería hermoso 😭💗 Gracias por existir en mi vida.</div>
     </div>
   </section>
 
   <footer>
-    Hecho con todo mi amor para ti ♡
+    Hecho con todo mi cariño, para una personita muy especial ♡
   </footer>
 
   <script>
@@ -405,25 +773,32 @@
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
-      heart.innerHTML = ['♡', '♥', '💗', '💕', '🌸'][Math.floor(Math.random() * 5)];
+      heart.innerHTML = ['♡', '♥', '💗', '💕', '🌸', '✨'][Math.floor(Math.random() * 6)];
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.animationDuration = 5 + Math.random() * 6 + 's';
-      heart.style.fontSize = 16 + Math.random() * 24 + 'px';
+      heart.style.animationDuration = 5 + Math.random() * 7 + 's';
+      heart.style.fontSize = 15 + Math.random() * 24 + 'px';
       heartsContainer.appendChild(heart);
-
-      setTimeout(() => {
-        heart.remove();
-      }, 11000);
+      setTimeout(() => heart.remove(), 12000);
     }
 
-    setInterval(createHeart, 350);
+    setInterval(createHeart, 330);
+
+    for (let i = 0; i < 34; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * 100 + 'vw';
+      sparkle.style.top = Math.random() * 100 + 'vh';
+      sparkle.style.animationDelay = Math.random() * 3 + 's';
+      document.body.appendChild(sparkle);
+    }
 
     function showAnswer() {
       document.getElementById('answer').style.display = 'block';
-      for (let i = 0; i < 20; i++) {
-        setTimeout(createHeart, i * 80);
+      for (let i = 0; i < 36; i++) {
+        setTimeout(createHeart, i * 60);
       }
     }
   </script>
 </body>
 </html>
+
